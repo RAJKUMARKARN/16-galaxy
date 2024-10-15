@@ -1,0 +1,125 @@
+/* Set body and html to take full screen */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    font-family: sans-serif;
+  }
+
+  
+  
+  /* Full-screen canvas */
+  canvas.webgl {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Behind the overlay */
+  }
+  
+  /* Overlay container */
+  .overlay {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    z-index: 2; /* Above the canvas */
+    color: white;
+    font-family: Arial, sans-serif;
+    margin-left:270px;
+     
+  }
+  
+  
+  .overlay h1 {
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(43deg, blue 0%, #C850C0 46%) ;
+    -webkit-background-clip: text; /* For WebKit browsers (Safari, Chrome) */
+    background-clip: text; /* Standard background-clip */
+    color: transparent;
+    margin-left:300px;
+    
+  }
+  
+  .overlay p {
+    font-size: 1.2em;
+    font-family: fantasy;
+    color: white;
+    margin-left: 200px;
+    transition: background-color 0.3s ease;
+  }
+  .overlay p:hover {
+    color:grey !important;
+    cursor:pointer;
+  }
+  
+  .action-btn {
+    padding: 15px 40px;
+    font-size: 1em;
+    border: none;
+    outline: none;
+    color: #FFF;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 12px;
+    margin-left: 350px;
+    margin-top: 15px;
+}
+
+.action-btn::after {  /* Removed extra space */
+    content: "";
+    z-index: -2;  /* Changed to -2 so it stays behind the ::before element */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+.action-btn::before {  /* Removed extra space */
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5, #002BFF, #FF00C8, #FF0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    opacity: 0;  /* Set opacity to 0 initially */
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.action-btn:hover::before {
+    opacity: 1;  /* Now hover will bring the glowing effect */
+}
+
+.action-btn:active::after {  /* Corrected pseudo-element and made background transparent */
+    background-color: transparent;
+}
+
+.action-btn:active {
+    color: #000;
+    font-weight: bold;
+}
+a{
+  text-decoration: none;
+  color:white;
+}

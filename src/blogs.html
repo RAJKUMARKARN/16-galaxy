@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+    <link rel="stylesheet" href="blogs.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="overall">
+        <nav>
+            <div class="logo">
+                <img src="images/WhatsApp Image 2024-10-11 at 12.44.59_37f7c35e.jpg" alt="">
+                <h3> SnapLearn!</h3>
+            </div>
+
+            <ul>
+                <li><a href="mainpage.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="#">⭐Points</a></li>
+                <li><a href="contactUs.html">Contact Us!</a></li>
+            </ul>
+        </nav>
+        <div>
+            <div class="sys">
+                <h1 class="heading">Welcome to the Educational Blog page </h1>
+            </div>
+            <div class="container my-4">
+                <div class="row content d-flex justify-content-evenly"></div>
+
+                <div class="d-flex justify-content-around my-4">
+                    <button id="prevBtn" class="btn btn-primary" onclick="changePage(-1)" disabled>← Previous Page</button>
+                    <button id="nextBtn" class="btn btn-primary" onclick="changePage(1)">Next Page →</button>
+                </div>
+            </div>
+
+            <script>
+                let currentPage = 1; // Track the current page
+
+                const fetchNews = async (page, q) => {
+                    var url = 'https://newsapi.org/v2/everything?' +
+                        'q=' + q +
+                        '&from=2024-10-13&' +
+                        'pageSize=12&' +
+                        'language=en&' +
+                        'page=' + page +
+                        '&sortBy=popularity&' +
+                        'apiKey=5314faa5416346e8bfa7579293efdf13';
+
+                    try {
+                        var req = new Request(url);
+                        let a = await fetch(req);
+
+                        if (!a.ok) {
+                            throw new Error(`HTTP error! status: ${a.status}`);
+                        }
+
+                        let response = await a.json();
+                        console.log(response);
+
+                        // Ensure resultCount element exists
+                        const resultCount = document.getElementById("resultCount");
+                        if (resultCount) {
+                            resultCount.innerHTML = response.totalResults; // Display total results
+                        }
+
+                        let str = '';
+                        // Loop through the response articles and build the HTML for up to 12 articles
+                        for (let item of response.articles) {
+                            // Use a fallback image if urlToImage is not available
+                            const imageUrl = item.urlToImage ? item.urlToImage : 'https://via.placeholder.com/150';
+                            str += `
+                                <div class="card my-4 mx-2" style="width: 18rem;">
+                                    <img src="${imageUrl}" class="card-img-top" alt="News Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${item.title}</h5>
+                                        <p class="card-text">${item.description}</p>
+                                        <a href="${item.url}" target="_blank" class="btn btn-primary">Read More</a>
+                                    </div>
+                                </div>`;
+                        }
+
+                        // Insert the articles into the content section
+                        document.querySelector(".content").innerHTML = str;
+
+                        // Enable/disable buttons based on current page
+                        document.getElementById("prevBtn").disabled = (currentPage === 1);
+                        document.getElementById("nextBtn").disabled = (response.articles.length < 12); // If less than 12 articles returned, disable next
+
+                    } catch (error) {
+                        console.error('Fetch error:', error);
+                        // Optionally, display an error message to the user
+                        document.querySelector(".content").innerHTML = `<p>Error fetching news: ${error.message}</p>`;
+                    }
+                };
+
+                const changePage = (direction) => {
+                    currentPage += direction; // Update current page based on direction (-1 for previous, +1 for next)
+                    fetchNews(currentPage, "sports"); // Fetch news for the new page
+                };
+
+                // Initial fetch
+                fetchNews(currentPage, "music");
+            </script>
+        </div>
+    </div>
+</body>
+</html>

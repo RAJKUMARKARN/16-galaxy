@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+
+.overall {
+    height: 250vh;
+    width: 100%;
+    background-image: url("images/Background.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+nav {
+    top: 0;
+    display: flex;
+    height: 90px;
+    width: 100%;
+    align-items: center;
+    background-color: black;
+    position: fixed; /* Fixed navbar */
+    z-index: 1000; /* Ensures navbar stays above other content */
+}
+
+.logo {
+    height: 60px;
+    width: 50%;
+    margin-left: 30px;
+    display: flex;
+    gap: 8px;
+}
+
+.logo h3 {
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(43deg, blue 0%, #C850C0 46%);
+    -webkit-background-clip: text; /* For WebKit browsers (Safari, Chrome) */
+    background-clip: text; /* Standard background-clip */
+    color: transparent;
+    margin-top: 15px;
+    font-size: 30px;
+    font-family: Arial;
+}
+
+.logo img {
+    height: 60px;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    list-style-type: none; /* Remove bullets */
+}
+
+ul li {
+    margin-right: 35px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+ul li a:hover {
+    text-decoration: none;
+    color: gray;
+    
+}
+.info {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 80px;
+    position: relative;
+    transition: all 0.4s;
+}
+
+.joddd{
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(43deg, #415800 0%, #C850C0 46%, #FFCC70 100%);
+    -webkit-background-clip: text; /* For WebKit browsers (Safari, Chrome) */
+    background-clip: text; /* Standard background-clip */
+    color: transparent;
+    display: inline-block; /* Required for background-clip to work properly */
+    font-size: 40px;
+    margin-top: 80px;
+}
+.photo{
+    height:300px;
+    justify-content:space-evenly;
+    display: flex;
+    margin-top:50px;
+}
+.carrier img{
+    height:150px;
+    width:170px;
+    border-radius: 50%;
+}
+.carrier h5{
+    color:grey;
+    margin-left:32px;
+    margin-top:15px;
+}
+
+.lemon img{
+    height:30px;
+    width:30px;
+    margin-left:15px;
+    margin-top:15px;
+}
+ .heading3{
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(43deg, blue 0%, #b32daa 46%, #55df23 100%);
+    -webkit-background-clip: text; /* For WebKit browsers (Safari, Chrome) */
+    background-clip: text; /* Standard background-clip */
+    color: transparent;
+    margin-left:46%;
+    margin-top:180px;
+}
+
+
+/* Center the form */
+.container-do {
+    
+    justify-content: center;
+    align-items: center;
+    min-height: 400px; /* Full screen height */
+    /* Optional: dark overlay background */
+  }
+  
+  
+  /* Transparent container styling */
+  form {
+    background-color: rgba(0, 0, 0, 0.5); ; /* Make the form container slightly transparent */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    margin-left:36%;
+    margin-top:70px;
+    height:480px;
+  }
+  
+  /* Additional form styles */
+  form label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  .container-do input{
+    width:100%;
+    left:50px;
+    height:20px;
+    padding:10px;
+    margin-right:10px;
+    margin-top:15px;
+    margin-bottom:7px;
+    border-radius: 20px;
+    background-color: grey;
+  }
+  .container-do textarea{
+    width:100%;
+    max-width:600px;
+    height:100px;
+    margin-top:15px;
+    border-radius:10px;
+    background-color: grey;
+  }
+  .container-do label{
+   color:white;
+   margin-top:7px;
+  
+  }
+  .zex{
+    margin-left:220px;
+    margin-top:30px;
+    height:50px;
+    width:180px;
+    border-radius:20px;
+    
+  }
+
+
+  .zex {
+    padding: 15px 40px;
+      
+    border: none;
+    outline: none;
+    color: #FFF;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 12px;
+    
+   
+}
+
+.zex::after {  /* Removed extra space */
+    content: "";
+    z-index: -2;  /* Changed to -2 so it stays behind the ::before element */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+.zex::before {  /* Removed extra space */
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5, #002BFF, #FF00C8, #FF0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    opacity: 0;  /* Set opacity to 0 initially */
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.zex:hover::before {
+    opacity: 1;  /* Now hover will bring the glowing effect */
+}
+
+.zex:active::after {  /* Corrected pseudo-element and made background transparent */
+    background-color: transparent;
+}
+
+.zex:active {
+    color: #000;
+    font-weight: bold;
+}
